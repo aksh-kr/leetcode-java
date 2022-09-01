@@ -1,3 +1,3 @@
 # LeetCode
 Collection of LeetCode questions.<br>
-I post my own solutions for refrence.
+I post my own solutions for reference.
