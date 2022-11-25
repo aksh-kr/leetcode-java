@@ -10,28 +10,23 @@
  */
 class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        ListNode fast = head;
-        ListNode slow = head;
+        ListNode dummy = new ListNode(0);
+        ListNode slow = dummy, fast = dummy;
+        dummy.next = head;
         
-        if(head.next == null) {
-            return null;
-        }
-        
-        for(int i=0; i<n; i++) {
+        // move  fast n+1 nodes ahead
+        for(int i=0; i<n+1; i++) {
             fast = fast.next;
         }
         
-        if(fast == null) {
-            return head.next;
-        }
-        
-        while(fast != null && fast.next != null) {
-            fast = fast.next;
+        while(fast != null) {
             slow = slow.next;
+            fast = fast.next;
         }
         
         slow.next = slow.next.next;
         
-        return head;
+        return dummy.next;
+        // not return head, because head keeps pointing to the earlier node having value 1 in case of TC [1] 1
     }
 }
