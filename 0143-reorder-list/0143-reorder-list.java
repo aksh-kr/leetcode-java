@@ -10,10 +10,9 @@
  */
 class Solution {
     
-    public ListNode middleNode( ListNode head) {
+    public ListNode midNode(ListNode head) {
         ListNode fast = head;
         ListNode slow = head;
-        
         while(fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
@@ -23,35 +22,32 @@ class Solution {
     
     public ListNode reverseList (ListNode head) {
         ListNode prev = null;
-        ListNode current = head;
-        ListNode next = head;
+        ListNode curr = head;
         
-        while(current != null) {
-            next = next.next;
-            current.next = prev;
-            prev = current;
-            current = next;
+        while(curr != null) {
+            ListNode next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
         }
         return prev;
     }
     
     public void reorderList(ListNode head) {
-        ListNode mid = middleNode(head);
+        ListNode mid = midNode(head);
         ListNode hs = reverseList(mid);
         ListNode hf = head;
         
-        //rearrange
-        while (hf != null && hs != null) {
-            ListNode temp = hf.next;
+        while(hf != null && hs != null) {
+            ListNode temp1 = hf.next;
             hf.next = hs;
-            hf = temp;
+            hf = temp1;
             
-            temp = hs.next;
+            ListNode temp2 = hs.next;
             hs.next = hf;
-            hs = temp;
+            hs = temp2;
         }
         
-        // next of tail to null
         if(hf != null) {
             hf.next = null;
         }
