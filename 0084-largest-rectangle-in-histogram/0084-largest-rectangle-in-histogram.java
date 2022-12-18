@@ -5,7 +5,8 @@ class Solution {
         ArrayList<Integer> right = new ArrayList<>();
         ArrayList<Integer> left = new ArrayList<>();
         Stack<Pair<Integer, Integer>> s = new Stack<>();
-        
+        Stack<Pair<Integer, Integer>> s2 = new Stack<>();
+
         int[] width = new int[n];
         int[] area = new int[n];
         
@@ -29,26 +30,23 @@ class Solution {
         }
         
         Collections.reverse(right);
-        while(!s.isEmpty()){
-            s.pop();
-        }
         
         for(int i=0; i<n; i++) {
-            if(s.size() == 0){
+            if(s2.size() == 0){
                 left.add(-1);
-            } else if(s.size() > 0 && s.peek().getKey() < heights[i]) {
-                left.add(s.peek().getValue());
-            }else if(s.size() > 0 && s.peek().getKey() >= heights[i]) {
-                while(s.size() > 0 && s.peek().getKey() >= heights[i]) {
-                    s.pop();
+            } else if(s2.size() > 0 && s2.peek().getKey() < heights[i]) {
+                left.add(s2.peek().getValue());
+            }else if(s2.size() > 0 && s2.peek().getKey() >= heights[i]) {
+                while(s2.size() > 0 && s2.peek().getKey() >= heights[i]) {
+                    s2.pop();
                 }
-                if(s.size() == 0) {
+                if(s2.size() == 0) {
                     left.add(-1);
                 }else{
-                    left.add(s.peek().getValue());
+                    left.add(s2.peek().getValue());
                 }
             }
-            s.push(new Pair(heights[i], i));
+            s2.push(new Pair(heights[i], i));
         }
         
         for(int i=0; i<n; i++) {
