@@ -1,24 +1,16 @@
 class Solution {
     public List<Integer> findLonely(int[] nums) {
-        HashMap<Integer,Integer> map = new HashMap<>();
-        List<Integer> ans = new ArrayList<>();
-        
-        for(int i: nums){
-            map.put(i, map.getOrDefault(i,0)+1);
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int num : nums) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
         }
-        
-        for(int i: nums) {
-            if(map.get(i) == 1){
-               if(map.containsKey(i+1)){
-                continue;
-             }else if(map.containsKey(i-1)){
-                continue;
-             }else{
-                ans.add(i);        
-             } 
+        List<Integer> res = new ArrayList<>();
+		for (int num : map.keySet()) {
+       //  for (int num : nums) {
+            if (map.get(num) == 1 && !map.containsKey(num - 1) && !map.containsKey(num + 1)) {
+                res.add(num);
             }
-            
         }
-        return ans;
+        return res;
     }
-}
+    }
