@@ -19,7 +19,7 @@ class Solution {
             if(map.get(key) == true) {
                 
                 int count = 0;
-                while(map.containsKey(key + count)) {
+                while(map.containsKey(key + count) == true) {
                     count++;
                 }
                 
