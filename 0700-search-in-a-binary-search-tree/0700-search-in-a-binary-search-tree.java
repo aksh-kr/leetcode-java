@@ -19,9 +19,6 @@ class Solution {
             return root;
         }
         
-        if(root.val < val){
-           return searchBST(root.right, val);
-        }else 
-           return searchBST(root.left, val);
+        return val > root.val ? searchBST(root.right, val) : searchBST(root.left, val);
     }
 }
