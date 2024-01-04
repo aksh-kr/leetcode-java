@@ -1,21 +1,20 @@
 class Solution {
     public int numberOfBeams(String[] bank) {
-        int[] rowOneCount = new int[bank.length];
-        int beams = 0;
-        for(int i=0; i<bank.length; i++) {
-            int oneCount = 0;
-            for(char c : bank[i].toCharArray()){
-                if(c == '1'){
-                    oneCount++;
+        int prev = 0, totalBeams = 0;
+        
+        for(String s : bank) {
+            int count = 0;
+            for(int i = 0; i < s.length(); i++) {
+                if(s.charAt(i) == '1') {
+                    count++;
                 }
             }
-            rowOneCount[i] = oneCount;
+            
+            if(count>0) {
+                totalBeams += prev*count;
+                prev = count;
+            }
         }
-        
-        int[] filteredArray = Arrays.stream(rowOneCount).filter(num -> num != 0).toArray(); 
-        for(int i=1; i<filteredArray.length; i++) {
-            beams += filteredArray[i]*filteredArray[i-1];
-        }
-        return beams;
+        return totalBeams;
     }
 }
