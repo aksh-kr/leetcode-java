@@ -5,16 +5,9 @@ class Solution {
             map.put(ch, map.getOrDefault(ch,0)+1);
         }
         
-        char ans = '0';
-        for(Character key : map.keySet()) {
-            if(map.get(key) == 1) {
-                ans = key;
-                break;
-            }
-        }
         
         for(int i=0; i<s.length(); i++) {
-            if(s.charAt(i) == ans) {
+            if(map.get(s.charAt(i)) == 1) {
                 return i;
             }
         }
